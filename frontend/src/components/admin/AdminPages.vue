@@ -1,11 +1,11 @@
 <template>
     <div class="admin-pages">
         <PageTitle icon="fa fa-cogs" main="Administração do Sistema"
-            sub="Cadastros & Cia" />
+            sub="Empregos & Serviços" />
         <div class="admin-pages-tabs">
             <b-card no-body>
                 <b-tabs card>
-                    <b-tab title="Artigos" active>
+                    <b-tab title="Ofertas" active>
                         <ArticleAdmin />
                     </b-tab>
                     <b-tab title="Categorias">

@@ -17,7 +17,7 @@
                     v-model="category.path"
                     readonly />
             </b-form-group>
-            <b-button variant="primary" v-if="mode === 'save'"
+            <b-button variant="success" v-if="mode === 'save'"
                 @click="save">Salvar</b-button>
             <b-button variant="danger" v-if="mode === 'remove'"
                 @click="remove">Excluir</b-button>

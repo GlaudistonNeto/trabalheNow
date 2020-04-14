@@ -24,6 +24,14 @@
                 v-model="user.admin" class="mt-3 mb-3">
                 Administrador?
             </b-form-checkbox>
+            <b-form-checkbox id="user-admin" v-show="mode === 'save'"
+                v-model="user.admin" class="mt-3 mb-3">
+                Empregador?
+            </b-form-checkbox>
+            <b-form-checkbox id="user-admin" v-show="mode === 'save'"
+                v-model="user.admin" class="mt-3 mb-3">
+                Trabalhador?
+            </b-form-checkbox>
             <b-row v-show="mode === 'save'">
                 <b-col md="6" sm="12">
                     <b-form-group label="Senha:" label-for="user-password">
@@ -43,7 +51,7 @@
             </b-row>
             <b-row>
                 <b-col xs="12">
-                    <b-button variant="primary" v-if="mode === 'save'"
+                    <b-button variant="success" v-if="mode === 'save'"
                         @click="save">Salvar</b-button>
                     <b-button variant="danger" v-if="mode === 'remove'"
                         @click="remove">Excluir</b-button>

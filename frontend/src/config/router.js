@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 
 import Home from '@/components/home/Home'
 import AdminPages from '@/components/admin/AdminPages'
-import JobsByCategory from '@/components/job/JobsByCategory'
-import JobById from '@/components/job/JobById'
+import ArticlesByCategory from '@/components/article/ArticlesByCategory'
+import ArticleById from '@/components/article/ArticleById'
 import Auth from '@/components/auth/Auth'
 
 import { userKey } from '@/global'
@@ -21,13 +21,13 @@ const routes = [{
     component: AdminPages,
     meta: { requiresAdmin: true }
 }, {
-    name: 'jobsByCategory',
-    path: '/categories/:id/jobs',
-    component: JobsByCategory
+    name: 'articlesByCategory',
+    path: '/categories/:id/articles',
+    component: ArticlesByCategory
 }, {
-    name: 'jobById',
-    path: '/jobs/:id',
-    component: JobById
+    name: 'articleById',
+    path: '/articles/:id',
+    component: ArticleById
 }, {
     name: 'auth',
     path: '/auth',

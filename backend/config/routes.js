@@ -21,6 +21,7 @@ module.exports = app => {
         .get(admin(app.api.category.get))
         .post(admin(app.api.category.save))
 
+    // Cuidado com ordem! Tem que vir antes de /categories/:id
     app.route('/categories/tree')
         .all(app.config.passport.authenticate())
         .get(app.api.category.getTree)
@@ -31,20 +32,20 @@ module.exports = app => {
         .put(admin(app.api.category.save))
         .delete(admin(app.api.category.remove))
 
-    app.route('/jobs')
+    app.route('/articles')
         .all(app.config.passport.authenticate())
-        .get(admin(app.api.job.get))
-        .post(admin(app.api.job.save))
+        .get(admin(app.api.article.get))
+        .post(admin(app.api.article.save))
 
-    app.route('/jobs/:id')
+    app.route('/articles/:id')
         .all(app.config.passport.authenticate())
-        .get(app.api.job.getById)
-        .put(admin(app.api.job.save))
-        .delete(admin(app.api.job.remove))
+        .get(app.api.article.getById)
+        .put(admin(app.api.article.save))
+        .delete(admin(app.api.article.remove))
 
-    app.route('/categories/:id/jobs')
+    app.route('/categories/:id/articles')
         .all(app.config.passport.authenticate())
-        .get(app.api.job.getByCategory)
+        .get(app.api.article.getByCategory)
 
     app.route('/stats')
         .all(app.config.passport.authenticate())

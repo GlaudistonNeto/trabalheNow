@@ -1,16 +1,16 @@
 <template>
-    <div class="jobs-by-category">
+    <div class="articles-by-category">
         <PageTitle icon="fa fa-folder-o"
             :main="category.name" sub="Categoria" />
         <ul>
-            <li v-for="job in jobs" :key="job.id">
-                <JobItem :job="job" />
+            <li v-for="article in articles" :key="article.id">
+                <ArticleItem :article="article" />
             </li>
         </ul>
         <div class="load-more">
             <button v-if="loadMore"
                 class="btn btn-lg btn-outline-primary"
-                @click="jobs">Carregar Mais Trabalhos</button>
+                @click="getArticles">Carregar Mais Ofertas</button>
         </div>
     </div>
 </template>
@@ -19,15 +19,15 @@
 import { baseApiUrl } from '@/global'
 import axios from 'axios'
 import PageTitle from '../template/PageTitle'
-import JobItem from './JobItem'
+import ArticleItem from './ArticleItem'
 
 export default {
-    name: 'JobsByCategory',
-    components: { PageTitle, JobItem },
+    name: 'ArticlesByCategory',
+    components: { PageTitle, ArticleItem },
     data: function() {
         return {
             category: {},
-            jobs: [],
+            articles: [],
             page: 1,
             loadMore: true
         }
@@ -37,10 +37,10 @@ export default {
             const url = `${baseApiUrl}/categories/${this.category.id}`
             axios(url).then(res => this.category = res.data)
         },
-        getJobs() {
-            const url = `${baseApiUrl}/categories/${this.category.id}/jobs?page=${this.page}`
+        getArticles() {
+            const url = `${baseApiUrl}/categories/${this.category.id}/articles?page=${this.page}`
             axios(url).then(res => {
-                this.jobs = this.jobs.concat(res.data)
+                this.articles = this.articles.concat(res.data)
                 this.page++
 
                 if(res.data.length === 0) this.loadMore = false
@@ -50,29 +50,29 @@ export default {
     watch: {
         $route(to) {
             this.category.id = to.params.id
-            this.jobs = []
+            this.articles = []
             this.page = 1
             this.loadMore = true
 
             this.getCategory()
-            this.getJobs()
+            this.getArticles()
         }
     },
     mounted() {
         this.category.id = this.$route.params.id
         this.getCategory()
-        this.getJobs()
+        this.getArticles()
     }
 }
 </script>
 
 <style>
-    .jobs-by-category ul {
+    .articles-by-category ul {
         list-style-type: none;
         padding: 0px;
     }
 
-    .jobs-by-category .load-more {
+    .articles-by-category .load-more {
         display: flex;
         flex-direction: column;
         align-items: center;
