@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
         .inTable('users').notNull()
         table.integer('categoryId').references('id')
         .inTable('categories').notNull()
-        table.real('offerPrice', 7, 2).notNull()
+        table.decimal('offerPrice', 7, 2).notNull()
     })
 };
 
