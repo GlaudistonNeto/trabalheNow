@@ -12,6 +12,38 @@
                     </b-form-group>
                 </b-col>
                 <b-col md="6" sm="12">
+                    <b-form-group label="Sobrenomeome:" label-for="user-surname">
+                        <b-form-input id="user-surname" type="text"
+                            v-model="user.surname" required
+                            :readonly="mode === 'remove'"
+                            placeholder="Informe o Sobrenome do Usuário..." />
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Estado:" label-for="user-state">
+                        <b-form-input id="user-state" type="text"
+                            v-model="user.state" required
+                            :readonly="mode === 'remove'"
+                            placeholder="Informe o Estado do Usuário..." />
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Cidade:" label-for="user-city">
+                        <b-form-input id="user-city" type="text"
+                            v-model="user.city" required
+                            :readonly="mode === 'remove'"
+                            placeholder="Informe o Cidade do Usuário..." />
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" sm="12">
+                    <b-form-group label="Bairro:" label-for="user-neighborhood">
+                        <b-form-input id="user-neighborhood" type="text"
+                            v-model="user.neighborhood" required
+                            :readonly="mode === 'remove'"
+                            placeholder="Informe o Bairro do Usuário..." />
+                    </b-form-group>
+                </b-col>
+                <b-col md="6" sm="12">
                     <b-form-group label="E-mail:" label-for="user-email">
                         <b-form-input id="user-email" type="text"
                             v-model="user.email" required
@@ -24,13 +56,9 @@
                 v-model="user.admin" class="mt-3 mb-3">
                 Administrador?
             </b-form-checkbox>
-            <b-form-checkbox id="user-admin" v-show="mode === 'save'"
-                v-model="user.admin" class="mt-3 mb-3">
+            <b-form-checkbox id="user-employer" v-show="mode === 'save'"
+                v-model="user.employer" class="mt-3 mb-3">
                 Empregador?
-            </b-form-checkbox>
-            <b-form-checkbox id="user-admin" v-show="mode === 'save'"
-                v-model="user.admin" class="mt-3 mb-3">
-                Trabalhador?
             </b-form-checkbox>
             <b-row v-show="mode === 'save'">
                 <b-col md="6" sm="12">
@@ -87,7 +115,13 @@ export default {
             fields: [
                 { key: 'id', label: 'Código', sortable: true },
                 { key: 'name', label: 'Nome', sortable: true },
+                { key: 'surname', label: 'Sobrenome', sortable: true },
+                { key: 'city', label: 'Cidade', sortable: true },
+                { key: 'state', label: 'Estado', sortable: true },
+                { key: 'neighborhood', label: 'Bairro', sortable: true },
                 { key: 'email', label: 'E-mail', sortable: true },
+                { key: 'employer', label: 'Empregador', sortable: true,
+                    formatter: value => value ? 'Sim' : 'Não' },
                 { key: 'admin', label: 'Administrador', sortable: true,
                     formatter: value => value ? 'Sim' : 'Não' },
                 { key: 'actions', label: 'Ações' }

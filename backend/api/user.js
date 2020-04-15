@@ -17,6 +17,10 @@ module.exports = app => {
 
         try {
             existsOrError(user.name, 'Nome não informado')
+            existsOrError(user.surname, 'Nome não informado')
+            existsOrError(user.state, 'Nome não informado')
+            existsOrError(user.city, 'Nome não informado')
+            existsOrError(user.neighborhood, 'Nome não informado')
             existsOrError(user.email, 'E-mail não informado')
             existsOrError(user.password, 'Senha não informada')
             existsOrError(user.confirmPassword, 'Confirmação de Senha inválida')
