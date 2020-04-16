@@ -35,13 +35,13 @@
                 label="Conteúdo" label-for="article-content">
                 <VueEditor v-model="article.content"
                     placeholder="Descreva o Conteúdo do Serviço..." />
-            </b-form-group><!-- 
-            <b-form-group label="Preço:" label-for="article-price">
-                <b-form-input id="article-price" type="number"
-                    v-model="article.price" required
+            </b-form-group>
+            <b-form-group label="Preço:" label-for="article-offerPrice">
+                <b-form-input id="article-offerPrice" type="number"
+                    v-model="article.offerPrice" required
                     :readonly="mode === 'remove'"
-                    placeholder="Informe o Preço do Serviço..." /> 
-            </b-form-group> -->
+                    placeholder="Informe o Preço do Serviço..." />
+            </b-form-group>
             <b-button variant="success" v-if="mode === 'save'"
                 @click="save">Salvar</b-button>
             <b-button variant="danger" v-if="mode === 'remove'"
@@ -85,7 +85,8 @@ export default {
                 { key: 'id', label: 'Código', sortable: true },
                 { key: 'name', label: 'Nome', sortable: true },
                 { key: 'description', label: 'Descrição', sortable: true },
-                { key: 'priceOffer', label: 'Preço', sortable: true },
+                { key: 'offerPrice', label: 'Preço', sortable: true },
+                { key: 'offerPrice', label: 'Preço', sortable: true },
                 { key: 'actions', label: 'Ações' }
             ]
         }

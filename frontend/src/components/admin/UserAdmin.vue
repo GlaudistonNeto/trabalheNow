@@ -60,6 +60,10 @@
                 v-model="user.employer" class="mt-3 mb-3">
                 Empregador?
             </b-form-checkbox>
+            <b-form-checkbox id="user-employer" v-show="mode === 'save'"
+                v-model="user.employer" class="mt-3 mb-3">
+                Trabalhador?
+            </b-form-checkbox>
             <b-row v-show="mode === 'save'">
                 <b-col md="6" sm="12">
                     <b-form-group label="Senha:" label-for="user-password">
@@ -120,6 +124,8 @@ export default {
                 { key: 'state', label: 'Estado', sortable: true },
                 { key: 'neighborhood', label: 'Bairro', sortable: true },
                 { key: 'email', label: 'E-mail', sortable: true },
+                { key: 'worker', label: 'Trabalhador', sortable: true,
+                    formatter: value => value ? 'Sim' : 'Não' },
                 { key: 'employer', label: 'Empregador', sortable: true,
                     formatter: value => value ? 'Sim' : 'Não' },
                 { key: 'admin', label: 'Administrador', sortable: true,

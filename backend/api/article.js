@@ -13,6 +13,7 @@ module.exports = app => {
             existsOrError(article.categoryId, 'Categoria não informada')
             existsOrError(article.userId, 'Autor não informado')
             existsOrError(article.content, 'Conteúdo não informado')
+            existsOrError(article.offerPrice, 'Pagamento não informado')
         } catch(msg) {
             res.status(400).send(msg)
         }
@@ -37,7 +38,7 @@ module.exports = app => {
                 .where({ id: req.params.id }).del()
             
             try {
-                existsOrError(rowsDeleted, 'Artigo não foi encontrado.')
+                existsOrError(rowsDeleted, 'Oferta não foi encontrado.')
             } catch(msg) {
                 return res.status(400).send(msg)    
             }
