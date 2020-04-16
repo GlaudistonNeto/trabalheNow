@@ -4,28 +4,28 @@ module.exports = app => {
     const { existsOrError } = app.api.validation
 
     const save = (req, res) => {
-        const portfolio = { ...req.body }
-        if(req.params.id) portfolio.id = req.params.id
+        const article = { ...req.body }
+        if(req.params.id) article.id = req.params.id
 
         try {
-            existsOrError(portfolio.work, 'Nome do serviço não informado')
-            existsOrError(portfolio.description, 'Descrição do serviço não informada')
-            existsOrError(portfolio.categoryId, 'Categoria do serviço não informada')
-            existsOrError(portfolio.userId, 'Trabalhador não informado')
-            existsOrError(portfolio.evaluation, 'Avaliação não informado')
+            existsOrError(article.work, 'Serviço não informado')
+            existsOrError(article.description, 'Descrição não informada')
+            existsOrError(article.categoryId, 'Categoria/categorias não informada(s)')
+            existsOrError(article.userId, 'Oferta não informada')
+            // implements evaluation
         } catch(msg) {
             res.status(400).send(msg)
         }
 
-        if(portfolio.id) {
-            app.db('portfolios')
-                .update(portfolio)
-                .where({ id: portfolio.id })
+        if(evaluation.id) {
+            app.db('portfolio')
+                .update(evaluation)
+                .where({ id: evaluation.id })
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
         } else {
-            app.db('portfolios')
-                .insert(portfolio)
+            app.db('portfolio')
+                .insert(article)
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
         }
@@ -33,13 +33,13 @@ module.exports = app => {
 
     const remove = async (req, res) => {
         try {
-            const rowsDeleted = await app.db('portfolios')
+            const rowsDeleted = await app.db('portfolio')
                 .where({ id: req.params.id }).del()
             
             try {
-                existsOrError(rowsDeleted, 'Trabalho não foi encontrado.')
+                existsOrError(rowsDeleted, 'portfolio não foi encontrado.')
             } catch(msg) {
-                return res.status(400).send(msg)    
+                return res.status(400).send(msg)
             }
 
             res.status(204).send()
@@ -52,23 +52,23 @@ module.exports = app => {
     const get = async (req, res) => {
         const page = req.query.page || 1
 
-        const result = await app.db('portfolios').count('id').first()
+        const result = await app.db('portfolio').count('id').first()
         const count = parseInt(result.count)
 
         app.db('portfolio')
-            .select('id', 'work', 'description')
+            .select('id', 'name', 'description')
             .limit(limit).offset(page * limit - limit)
-            .then(categories => res.json({ data: categories, count, limit }))
+            .then(portfolios => res.json({ data: portfolios, count, limit }))
             .catch(err => res.status(500).send(err))
     }
 
     const getById = (req, res) => {
-        app.db('portfolios')
+        app.db('portfolio')
             .where({ id: req.params.id })
             .first()
-            .then(portfolio => {
-              portfolio.content = portfolio.content.toString()
-                return res.json(portfolio)
+            .then(article => {
+                article.content = article.content.toString()
+                return res.json(article)
             })
             .catch(err => res.status(500).send(err))
     }
@@ -79,12 +79,12 @@ module.exports = app => {
         const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
         const ids = categories.rows.map(c => c.id)
 
-        app.db({p: 'portfolios', u: 'users'})
-            .select('p.id', 'p.name', 'p.description', 'p.imageUrl', { author: 'u.name' })
+        app.db({p: 'portfolio', u: 'users'})
+            .select('p.id', 'p.work', 'p.description', { author: 'u.name' })
             .limit(limit).offset(page * limit - limit)
-            .whereRaw('?? = ??', ['u.id', 'a.userId'])
+            .whereRaw('?? = ??', ['u.id', 'p.userId'])
             .whereIn('categoryId', ids)
-            .orderBy('p.id', 'desc')
+            .orderBy('a.id', 'desc')
             .then(articles => res.json(articles))
             .catch(err => res.status(500).send(err))
     }
