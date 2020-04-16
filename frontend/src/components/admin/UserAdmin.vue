@@ -60,8 +60,8 @@
                 v-model="user.employer" class="mt-3 mb-3">
                 Empregador?
             </b-form-checkbox>
-            <b-form-checkbox id="user-employer" v-show="mode === 'save'"
-                v-model="user.employer" class="mt-3 mb-3">
+            <b-form-checkbox id="user-worker" v-show="mode === 'save'"
+                v-model="user.worker" class="mt-3 mb-3">
                 Trabalhador?
             </b-form-checkbox>
             <b-row v-show="mode === 'save'">
