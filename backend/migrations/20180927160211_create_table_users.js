@@ -7,6 +7,7 @@ exports.up = function (knex, Promise) {
         table.string('state').notNull()
         table.string('city').notNull()
         table.string('neighborhood').notNull()
+        table.integer('phone').notNull()
         table.string('email').notNull().unique()
         table.string('password').notNull()
         table.boolean('employer').notNull().defaultTo(false)
