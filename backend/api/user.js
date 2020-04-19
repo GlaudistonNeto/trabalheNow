@@ -56,7 +56,7 @@ module.exports = app => {
 
     const get = (req, res) => {
         app.db('users')
-            .select('id', 'name', 'email', 'admin')
+            .select('id', 'name', 'surname', 'state', 'city', 'neighborhood', 'email', 'employer', 'worker', 'admin')
             .whereNull('deletedAt')
             .then(users => res.json(users))
             .catch(err => res.status(500).send(err))
@@ -64,7 +64,7 @@ module.exports = app => {
 
     const getById = (req, res) => {
         app.db('users')
-            .select('id', 'name', 'email', 'admin')
+            .select('id', 'name', 'surname', 'state', 'city', 'neighborhood', 'email', 'employer', 'worker', 'admin')
             .where({ id: req.params.id })
             .whereNull('deletedAt')
             .first()

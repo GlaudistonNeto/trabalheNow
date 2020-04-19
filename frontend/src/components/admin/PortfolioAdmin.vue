@@ -1,20 +1,6 @@
 <template>
-    <div class="article-admin">
-        <b-form>
-            <input id="article-id" type="hidden" v-model="article.id" />
-        </b-form>
-        <hr>
-        <b-table hover striped :items="articles" :fields="fields">
-            <template slot="actions" slot-scope="data">
-                <b-button variant="warning" @click="loadArticle(data.item)" class="mr-2">
-                    <i class="fa fa-pencil"></i>
-                </b-button>
-                <b-button variant="danger" @click="loadArticle(data.item, 'remove')">
-                    <i class="fa fa-trash"></i>
-                </b-button>
-            </template>
-        </b-table>
-        <b-pagination size="md" v-model="page" :total-rows="count" :per-page="limit" />
+    <div class="portfolio-admin">
+      <h1>Portfólio dos trabalhadores</h1>
     </div>
 </template>
 
@@ -24,7 +10,7 @@ import { baseApiUrl, showError } from '@/global'
 import axios from 'axios'
 
 export default {
-    name: 'ArticleAdmin',
+    name: 'PortfolioAdmin',
     components: { VueEditor },
     data: function() {
         return {
@@ -40,7 +26,6 @@ export default {
                 { key: 'id', label: 'Código', sortable: true },
                 { key: 'name', label: 'Nome', sortable: true },
                 { key: 'description', label: 'Descrição', sortable: true },
-                { key: 'offerPrice', label: 'Preço', sortable: true },
                 { key: 'offerPrice', label: 'Preço', sortable: true },
                 { key: 'actions', label: 'Ações' }
             ]
@@ -96,7 +81,7 @@ export default {
             const url = `${baseApiUrl}/users`
             axios.get(url).then(res => {
                 this.users = res.data.map(user => {
-                    return { value: user.id, text: `${user.name} - ${user.email}` }
+                    return { value: user.id, text: `${user.name} - ${user.email} - ` }
                 })
             })
         }

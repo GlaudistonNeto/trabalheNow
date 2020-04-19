@@ -52,13 +52,9 @@
                     </b-form-group>
                 </b-col>
             </b-row>
-            <b-form-checkbox id="user-employer" v-show="mode === 'save'"
+            <b-form-checkbox id="user-worker" v-show="mode === 'save'"
                 v-model="user.employer" class="mt-3 mb-3">
-                Empregador?
-            </b-form-checkbox>
-            <b-form-checkbox id="user-employer" v-show="mode === 'save'"
-                v-model="user.employer" class="mt-3 mb-3">
-                Trabalhador?
+                Trabalhador!
             </b-form-checkbox>
             <b-row v-show="mode === 'save'">
                 <b-col md="6" sm="12">
