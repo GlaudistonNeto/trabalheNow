@@ -12,7 +12,7 @@
                     </b-form-group>
                 </b-col>
                 <b-col md="6" sm="12">
-                    <b-form-group label="Sobrenome:" label-for="user-surname">
+                    <b-form-group label="Sobrenomeome:" label-for="user-surname">
                         <b-form-input id="user-surname" type="text"
                             v-model="user.surname" required
                             :readonly="mode === 'remove'"
@@ -52,13 +52,13 @@
                     </b-form-group>
                 </b-col>
             </b-row>
-            <b-form-checkbox id="user-worker" v-show="mode === 'save'"
-                v-model="user.worker" class="mt-3 mb-3">
-                Trabalhador?
-            </b-form-checkbox>
             <b-form-checkbox id="user-employer" v-show="mode === 'save'"
                 v-model="user.employer" class="mt-3 mb-3">
                 Empregador?
+            </b-form-checkbox>
+            <b-form-checkbox id="user-worker" v-show="mode === 'save'"
+                v-model="user.worker" class="mt-3 mb-3">
+                Trabalhador?
             </b-form-checkbox>
             <b-form-checkbox id="user-admin" v-show="mode === 'save'"
                 v-model="user.admin" class="mt-3 mb-3">
@@ -120,8 +120,8 @@ export default {
                 { key: 'id', label: 'Código', sortable: true },
                 { key: 'name', label: 'Nome', sortable: true },
                 { key: 'surname', label: 'Sobrenome', sortable: true },
-                { key: 'city', label: 'Estado', sortable: true },
                 { key: 'city', label: 'Cidade', sortable: true },
+                { key: 'state', label: 'Estado', sortable: true },
                 { key: 'neighborhood', label: 'Bairro', sortable: true },
                 { key: 'email', label: 'E-mail', sortable: true },
                 { key: 'worker', label: 'Trabalhador', sortable: true,

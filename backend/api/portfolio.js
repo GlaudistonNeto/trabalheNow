@@ -12,6 +12,7 @@ module.exports = app => {
             existsOrError(article.description, 'Descrição não informada')
             existsOrError(article.categoryId, 'Categoria/categorias não informada(s)')
             existsOrError(article.userId, 'Oferta não informada')
+            // implements evaluation
         } catch(msg) {
             res.status(400).send(msg)
         }

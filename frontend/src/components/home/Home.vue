@@ -9,8 +9,6 @@
                 icon="fa fa-file" color="#3bc480" />
             <Stat title="Usuários" :value="stat.users"
                 icon="fa fa-user" color="#3282cd" />
-            <Stat title="Portfólios" :value="stat.portfolio"
-                icon="fa fa-address-card" color="#EDEF58" />
         </div>
     </div>
 </template>

@@ -17,6 +17,6 @@ consign()
     .then('./config/routes.js')
     .into(app)
 
-app.listen(3000, () => {    // needs to be changed to the backend url
+app.listen(3000, () => {
     console.log('Backend executando...')
 })
