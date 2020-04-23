@@ -1,6 +1,6 @@
 <template>
 	<div id="app" :class="{'hide-menu': !isMenuVisible || !user}">
-		<Header title="G-Neto - Trabalhe Now!"
+		<Header title="Cod3r - Base de Conhecimento" 
 			:hideToggle="!user"
 			:hideUserDropdown="!user" />
 		<Menu v-if="user" />

@@ -1,11 +1,11 @@
 <template>
     <div class="home">
         <PageTitle icon="fa fa-home" main="Dashboard"
-            sub="TrabalheNow! ©" />
+            sub="Base de Conhecimento" />
         <div class="stats">
             <Stat title="Categorias" :value="stat.categories"
                 icon="fa fa-folder" color="#d54d50" />
-            <Stat title="Ofertas" :value="stat.articles"
+            <Stat title="Artigos" :value="stat.articles"
                 icon="fa fa-file" color="#3bc480" />
             <Stat title="Usuários" :value="stat.users"
                 icon="fa fa-user" color="#3282cd" />

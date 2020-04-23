@@ -10,8 +10,8 @@ exports.up = function (knex, Promise) {
         table.integer('phone').notNull()
         table.string('email').notNull().unique()
         table.string('password').notNull()
-        table.boolean('employer').notNull().defaultTo(false)
         table.boolean('worker').notNull().defaultTo(false)
+        table.boolean('employer').notNull().defaultTo(false)
         table.boolean('admin').notNull().defaultTo(false)
     })
 };

@@ -10,7 +10,6 @@
             <input v-if="showSignup" v-model="user.state" type="text" placeholder="Estado">
             <input v-if="showSignup" v-model="user.city" type="text" placeholder="Cidade">
             <input v-if="showSignup" v-model="user.neighborhood" type="text" placeholder="Bairro">
-            <input v-if="showSignup" v-model="user.phone" type="text" placeholder="Telefone">
             <div v-if="showSignup" class="form-check mb-3">
               <label class="form-check-label">
                 <input v-model="user.employer" type="checkbox"
@@ -24,6 +23,7 @@
                 Trabalhador?
               </label>
             </div>
+            <input v-if="showSignup" v-model="user.phone" type="text" placeholder="Telefone">
             <input v-model="user.email" name="email" type="text" placeholder="E-mail">
             <input v-model="user.password" name="password" type="password" placeholder="Senha">
             <input v-if="showSignup" v-model="user.confirmPassword"
@@ -49,6 +49,7 @@ export default {
     data: function() {
         return {
             showSignup: false,
+            phone: '',
             user: {}
         }
     },

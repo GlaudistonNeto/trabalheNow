@@ -6,13 +6,13 @@
                 <b-form-input id="article-name" type="text"
                     v-model="article.name" required
                     :readonly="mode === 'remove'"
-                    placeholder="Informe o Nome do Serviço..." />
+                    placeholder="Informe o Nome do Artigo..." />
             </b-form-group>
             <b-form-group label="Descrição" label-for="article-description">
                 <b-form-input id="article-description" type="text"
                     v-model="article.description" required
                     :readonly="mode === 'remove'"
-                    placeholder="Informe o Tipo do Serviço..." />
+                    placeholder="Informe o Nome do Artigo..." />
             </b-form-group>
             <b-form-group v-if="mode === 'save'"
                 label="Imagem (URL):" label-for="article-imageUrl">
@@ -27,22 +27,16 @@
                     :options="categories" v-model="article.categoryId" />
             </b-form-group>
             <b-form-group v-if="mode === 'save'" 
-                label="Empregador:" label-for="article-userId">
+                label="Autor:" label-for="article-userId">
                 <b-form-select id="article-userId"
                     :options="users" v-model="article.userId" />
             </b-form-group>
             <b-form-group v-if="mode === 'save'"
                 label="Conteúdo" label-for="article-content">
                 <VueEditor v-model="article.content"
-                    placeholder="Descreva o Conteúdo do Serviço..." />
+                    placeholder="Informe o Conteúdo do Artigo..." />
             </b-form-group>
-            <b-form-group label="Preço:" label-for="article-offerPrice">
-                <b-form-input id="article-offerPrice" type="number"
-                    v-model="article.offerPrice" required
-                    :readonly="mode === 'remove'"
-                    placeholder="Informe o Preço do Serviço..." />
-            </b-form-group>
-            <b-button variant="success" v-if="mode === 'save'"
+            <b-button variant="primary" v-if="mode === 'save'"
                 @click="save">Salvar</b-button>
             <b-button variant="danger" v-if="mode === 'remove'"
                 @click="remove">Excluir</b-button>
@@ -85,8 +79,6 @@ export default {
                 { key: 'id', label: 'Código', sortable: true },
                 { key: 'name', label: 'Nome', sortable: true },
                 { key: 'description', label: 'Descrição', sortable: true },
-                { key: 'offerPrice', label: 'Preço', sortable: true },
-                { key: 'offerPrice', label: 'Preço', sortable: true },
                 { key: 'actions', label: 'Ações' }
             ]
         }

@@ -13,7 +13,7 @@ Vue.use(VueRouter)
 
 const routes = [{
     name: 'home',
-    path: '/',
+    path: '/forms',
     component: Home
 }, {
     name: 'adminPages',

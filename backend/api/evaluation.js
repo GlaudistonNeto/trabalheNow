@@ -8,21 +8,20 @@ module.exports = app => {
         if(req.params.id) article.id = req.params.id
 
         try {
-            existsOrError(article.imageUrl, 'Url da imagem não informada')
-            existsOrError(article.userId, 'trabalhador não informado')
-            existsOrError(article.categoryId, 'Categoria do trabalho não informada')
+            existsOrError(article.articleId, 'Trabalho não informado')
+            existsOrError(article.grade, 'Nota não informada')
         } catch(msg) {
             res.status(400).send(msg)
         }
 
         if(article.id) {
-            app.db('portfolios')
+            app.db('evaluations')
                 .update(article)
                 .where({ id: article.id })
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
         } else {
-            app.db('portfolios')
+            app.db('evaluations')
                 .insert(article)
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
@@ -31,11 +30,11 @@ module.exports = app => {
 
     const remove = async (req, res) => {
         try {
-            const rowsDeleted = await app.db('portfolios')
+            const rowsDeleted = await app.db('evaluations')
                 .where({ id: req.params.id }).del()
             
             try {
-                existsOrError(rowsDeleted, 'Artigo não foi encontrado.')
+                existsOrError(rowsDeleted, 'Trabalho não foi encontrado.')
             } catch(msg) {
                 return res.status(400).send(msg)    
             }
@@ -50,18 +49,18 @@ module.exports = app => {
     const get = async (req, res) => {
         const page = req.query.page || 1
 
-        const result = await app.db('portfolios').count('id').first()
+        const result = await app.db('evaluations').count('id').first()
         const count = parseInt(result.count)
 
-        app.db('portfolios')
-            .select('id', 'userId')
+        app.db('evaluations')
+            .select('id', 'articleId', 'grade')
             .limit(limit).offset(page * limit - limit)
-            .then(portfolios => res.json({ data: portfolios, count, limit }))
+            .then(evaluations => res.json({ data: evaluations, count, limit }))
             .catch(err => res.status(500).send(err))
     }
 
     const getById = (req, res) => {
-        app.db('portfolios')
+        app.db('evaluations')
             .where({ id: req.params.id })
             .first()
             .then(article => {
@@ -77,13 +76,13 @@ module.exports = app => {
         const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
         const ids = categories.rows.map(c => c.id)
 
-        app.db({p: 'portfolios', u: 'users'})
-            .select('p.id', 'p.name', 'p.description', 'p.imageUrl', { author: 'u.name' })
+        app.db({e: 'evaluations', u: 'users'})
+            .select('e.id', 'e.name', 'e.description', 'e.imageUrl', { author: 'u.name' })
             .limit(limit).offset(page * limit - limit)
             .whereRaw('?? = ??', ['u.id', 'a.userId'])
             .whereIn('categoryId', ids)
-            .orderBy('p.id', 'desc')
-            .then(artiportfolioscles => res.json(portfolios))
+            .orderBy('a.id', 'desc')
+            .then(evaluations => res.json(evaluations))
             .catch(err => res.status(500).send(err))
     }
 
