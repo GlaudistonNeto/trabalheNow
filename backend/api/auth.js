@@ -22,7 +22,13 @@ module.exports = app => {
         const payload = {
             id: user.id,
             name: user.name,
+            name: user.state,
+            name: user.city,
+            name: user.neighborhood,
+            name: user.phone,
             email: user.email,
+            admin: user.worker,
+            admin: user.employer,
             admin: user.admin,
             iat: now,
             exp: now + (60 * 60 * 24 * 3)

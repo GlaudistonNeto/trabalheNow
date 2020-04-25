@@ -17,7 +17,6 @@ module.exports = app => {
 
         try {
             existsOrError(user.name, 'Nome não informado')
-            existsOrError(user.surname, 'Sobrenome não informado')
             existsOrError(user.state, 'Estado não informado')
             existsOrError(user.city, 'Cidade não informado')
             existsOrError(user.neighborhood, 'Bairro não informado')
@@ -57,8 +56,7 @@ module.exports = app => {
 
     const get = (req, res) => {
         app.db('users')
-            .select('id', 'name', 'surname', 'state', 'city', 'neighborhood', 
-                'phone', 'email', 'worker', 'employer', 'admin')
+            .select('id', 'name', 'state', 'city', 'neighborhood', 'phone', 'email', 'admin')
             .whereNull('deletedAt')
             .then(users => res.json(users))
             .catch(err => res.status(500).send(err))
@@ -66,8 +64,7 @@ module.exports = app => {
 
     const getById = (req, res) => {
         app.db('users')
-            .select('id', 'name', 'surname', 'state', 'city', 'neighborhood', 
-                'phone', 'email', 'worker', 'employer', 'admin')
+        .select('id', 'name', 'state', 'city', 'neighborhood', 'phone', 'email', 'admin')
             .where({ id: req.params.id })
             .whereNull('deletedAt')
             .first()

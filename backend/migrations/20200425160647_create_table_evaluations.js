@@ -2,12 +2,14 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('evaluations', table => {
     table.increments('id').primary()
+    table.integer('grade').notNull()
+    table.integer('userId').references('id')
+      .inTable('users')
     table.integer('articleId').references('id')
-        .inTable('articles').notNull()
-    table.integer('grade', 1)
-  });  
+      .inTable('articles')
+  })
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('evaluations');
+  return knex.schema.dropTable('evaluations')
 };
