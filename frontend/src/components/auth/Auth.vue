@@ -5,20 +5,20 @@
             <hr>
             <div class="auth-title">{{ showSignup ? 'Cadastro' : 'Login' }}</div>
 
-            <input v-if="showSignup" v-model="user.name" type="text" placeholder="Nome">
-            <input v-if="showSignup" v-model="user.state" type="text" placeholder="Estado">
-            <input v-if="showSignup" v-model="user.city" type="text" placeholder="Cidade">
-            <input v-if="showSignup" v-model="user.neighborhood" type="text" placeholder="Bairro">
-            <input v-if="showSignup" v-model="user.phone" type="text" placeholder="Telefone">
+            <input v-if="showSignup" v-model="user.name" type="text" placeholder="Nome" />
+            <input v-if="showSignup" v-model="user.state" type="text" placeholder="Estado" />
+            <input v-if="showSignup" v-model="user.city" type="text" placeholder="Cidade" />
+            <input v-if="showSignup" v-model="user.neighborhood" type="text" placeholder="Bairro" />
+            <input v-if="showSignup" v-model="user.phone" type="tel" placeholder="(xx) xxxxx-xxxx" />
             <div>
                 <div v-if="showSignup" class="form-check">
                   <label class="form-check-label">
-                    <input v-model="user.worker" type="checkbox" class="form-check-input ml-5" value="checkedValue" checked >
+                    <input v-model="user.worker" type="checkbox" class="form-check-input ml-5" value="checkedValue" checked />
                     Trabalhador
                   </label>
                   <hr>
                   <label class="form-check-label">
-                    <input v-model="user.employer" type="checkbox" class="form-check-input ml-5" value="checkedValue" checked>
+                    <input v-model="user.employer" type="checkbox" class="form-check-input ml-5" value="checkedValue" checked />
                     Empregador
                   </label>
                 </div>
