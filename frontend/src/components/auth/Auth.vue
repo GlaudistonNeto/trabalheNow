@@ -9,7 +9,7 @@
             <input v-if="showSignup" v-model="user.state" type="text" placeholder="Estado" />
             <input v-if="showSignup" v-model="user.city" type="text" placeholder="Cidade" />
             <input v-if="showSignup" v-model="user.neighborhood" type="text" placeholder="Bairro" />
-            <input v-if="showSignup" v-model="user.phone" type="tel" placeholder="(xx) xxxxx-xxxx" />
+            <masked-input v-if="showSignup" v-model="user.phone" type="tel" mask="\+\55 (11) 11111-1111" placeholder="Telefone" />
             <div>
                 <div v-if="showSignup" class="form-check">
                   <label class="form-check-label">
@@ -42,6 +42,7 @@
 <script>
 import { baseApiUrl, showError, userKey } from '@/global'
 import axios from 'axios'
+import MaskedInput from 'vue-masked-input'
 
 export default {
     name: 'Auth',
@@ -70,6 +71,9 @@ export default {
                 })
                 .catch(showError)
         }
+    },
+    components: {
+        MaskedInput
     }
 }
 </script>
