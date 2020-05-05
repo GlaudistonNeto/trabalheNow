@@ -9,7 +9,13 @@
         </div>
         <div class="user-dropdown-content">
             <router-link to="/admin" v-if="user.admin">
-                <i class="fa fa-cogs"></i> Administração
+                <i class="fa fa-users"></i> Administração
+            </router-link>
+            <router-link to="/employer" v-if="user.admin">
+                <i class="fa fa-eye"></i> Ofertar
+            </router-link>
+            <router-link to="/worker" v-if="user.admin">
+                <i class="fa fa-cogs"></i> Portfólio
             </router-link>
             <a href @click.prevent="logout"><i class="fa fa-sign-out"></i> Sair</a>
         </div>

@@ -27,8 +27,8 @@ module.exports = app => {
             name: user.neighborhood,
             name: user.phone,
             email: user.email,
-            admin: user.worker,
-            admin: user.employer,
+            worker: user.worker,
+            employer: user.employer,
             admin: user.admin,
             iat: now,
             exp: now + (60 * 60 * 24 * 3)

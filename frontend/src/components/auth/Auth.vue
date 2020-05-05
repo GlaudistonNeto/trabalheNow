@@ -9,7 +9,7 @@
             <input v-if="showSignup" v-model="user.state" type="text" placeholder="Estado" />
             <input v-if="showSignup" v-model="user.city" type="text" placeholder="Cidade" />
             <input v-if="showSignup" v-model="user.neighborhood" type="text" placeholder="Bairro" />
-            <masked-input v-if="showSignup" v-model="user.phone" type="tel" mask="\+\55 (11) 11111-1111" placeholder="Telefone" />
+            <masked-input v-if="showSignup" v-model="user.phone" type="tel" mask="\(11) 11111-1111" placeholder="Telefone" />
             <div>
                 <div v-if="showSignup" class="form-check">
                   <label class="form-check-label">

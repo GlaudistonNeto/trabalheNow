@@ -10,23 +10,11 @@
                             :readonly="mode === 'remove'"
                             placeholder="Informe o Nome do Usuário..." />
                     </b-form-group>
-                    <b-form-group label="Estado:" label-for="user-state">
-                        <b-form-input id="user-state" type="text"
-                            v-model="user.state" required
-                            :readonly="mode === 'remove'"
-                            placeholder="Informe o Estado do Usuário..." />
-                    </b-form-group>
                     <b-form-group label="Cidade:" label-for="user-city">
                         <b-form-input id="user-city" type="text"
                             v-model="user.city" required
                             :readonly="mode === 'remove'"
                             placeholder="Informe o Cidade do Usuário..." />
-                    </b-form-group>
-                    <b-form-group label="Bairro:" label-for="user-neighborhood">
-                        <b-form-input id="user-neighborhood" type="text"
-                            v-model="user.neighborhood" required
-                            :readonly="mode === 'remove'"
-                            placeholder="Informe o Bairro do Usuário..." />
                     </b-form-group>
                     <b-form-group label="Telefone:" label-for="user-phone">
                         <b-form-input id="user-phone" type="text"
@@ -36,6 +24,18 @@
                     </b-form-group>
                 </b-col>
                 <b-col md="6" sm="12">
+                    <b-form-group label="Estado:" label-for="user-state">
+                        <b-form-input id="user-state" type="text"
+                            v-model="user.state" required
+                            :readonly="mode === 'remove'"
+                            placeholder="Informe o Estado do Usuário..." />
+                    </b-form-group>
+                    <b-form-group label="Bairro:" label-for="user-neighborhood">
+                        <b-form-input id="user-neighborhood" type="text"
+                            v-model="user.neighborhood" required
+                            :readonly="mode === 'remove'"
+                            placeholder="Informe o Bairro do Usuário..." />
+                    </b-form-group>
                     <b-form-group label="E-mail:" label-for="user-email">
                         <b-form-input id="user-email" type="text"
                             v-model="user.email" required
@@ -111,7 +111,15 @@ export default {
             fields: [
                 { key: 'id', label: 'Código', sortable: true },
                 { key: 'name', label: 'Nome', sortable: true },
+                { key: 'state', label: 'Estado', sortable: true },
+                { key: 'city', label: 'Cidade', sortable: true },
+                { key: 'neighborhood', label: 'Bairro', sortable: true },
+                { key: 'phone', label: 'Telefone', sortable: true },
                 { key: 'email', label: 'E-mail', sortable: true },
+                { key: 'worker', label: 'Trabalhador', sortable: true,
+                    formatter: value => value ? 'Sim' : 'Não' },
+                { key: 'employer', label: 'Empregadpr', sortable: true,
+                    formatter: value => value ? 'Sim' : 'Não' },
                 { key: 'admin', label: 'Administrador', sortable: true,
                     formatter: value => value ? 'Sim' : 'Não' },
                 { key: 'actions', label: 'Ações' }

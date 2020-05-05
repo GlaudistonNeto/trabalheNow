@@ -11,7 +11,7 @@ module.exports = app => {
     const save = async (req, res) => {
         const user = { ...req.body }
         if(req.params.id) user.id = req.params.id
-
+        
         if(!req.originalUrl.startsWith('/users')) user.admin = false
         if(!req.user || !req.user.admin) user.admin = false
 
@@ -56,7 +56,7 @@ module.exports = app => {
 
     const get = (req, res) => {
         app.db('users')
-            .select('id', 'name', 'state', 'city', 'neighborhood', 'phone', 'email', 'admin')
+            .select('id', 'name', 'state', 'city', 'neighborhood', 'phone', 'email', 'worker', 'employer', 'admin')
             .whereNull('deletedAt')
             .then(users => res.json(users))
             .catch(err => res.status(500).send(err))
@@ -64,7 +64,7 @@ module.exports = app => {
 
     const getById = (req, res) => {
         app.db('users')
-        .select('id', 'name', 'state', 'city', 'neighborhood', 'phone', 'email', 'admin')
+        .select('id', 'name', 'state', 'city', 'neighborhood', 'phone', 'email', 'worker', 'employer', 'admin')
             .where({ id: req.params.id })
             .whereNull('deletedAt')
             .first()
@@ -76,7 +76,7 @@ module.exports = app => {
         try {
             const articles = await app.db('articles')
                 .where({ userId: req.params.id })
-            notExistsOrError(articles, 'Usuário possui artigos.')
+            notExistsOrError(articles, 'Usuário possui ofertas.')
 
             const rowsUpdated = await app.db('users')
                 .update({deletedAt: new Date()})

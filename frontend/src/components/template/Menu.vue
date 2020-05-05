@@ -2,7 +2,14 @@
     <aside class="menu" v-show="isMenuVisible">
         <div class="menu-filter">
             <i class="fa fa-search fa-lg"></i>
-            <input type="text" placeholder="Digite para filtrar..."
+            <input type="text" placeholder="Digite para filtrar as ofertas..."
+                v-model="treeFilter" class="filter-field">
+        </div>
+        <Tree :data="treeData" :options="treeOptions"
+            :filter="treeFilter" ref="tree" />
+        <div class="menu-filter">
+            <i class="fa fa-search fa-lg"></i>
+            <input type="text" placeholder="Digite para filtrar os portfólios..."
                 v-model="treeFilter" class="filter-field">
         </div>
         <Tree :data="treeData" :options="treeOptions"
@@ -21,17 +28,22 @@ export default {
     components: { Tree },
     computed: mapState(['isMenuVisible']),
     data: function() {
-        return {
-            treeFilter: '',
-            treeData: this.getTreeData(),
-            treeOptions: {
-                propertyNames: { 'text': 'name' },
-                filter: { emptyText: 'Categoria não encontrada' }
+            return {
+                treeFilter: '',
+                treeData: this.getTreeData(),
+                treeDataPor: this.getTreeDataPor(),
+                treeOptions: {
+                    propertyNames: { 'text': 'name' },
+                    filter: { emptyText: 'Categoria não encontrada' }                
             }
         }
     },
     methods: {
         getTreeData() {
+            const url = `${baseApiUrl}/categories/tree`
+            return axios.get(url).then(res => res.data)
+        },
+        getTreeDataPor() {
             const url = `${baseApiUrl}/categories/tree`
             return axios.get(url).then(res => res.data)
         },
@@ -44,10 +56,21 @@ export default {
             if(this.$mq === 'xs' || this.$mq === 'sm') {
                 this.$store.commit('toggleMenu', false)
             }
+        },
+        onNodeSelectPor(node) {
+            this.$router.push({
+                name: 'portfoliosByCategory',
+                params: { id: node.id }
+            })
+
+            if(this.$mq === 'xs' || this.$mq === 'sm') {
+                this.$store.commit('toggleMenu', false)
+            }
         }
     },
     mounted() {
-        this.$refs.tree.$on('node:selected', this.onNodeSelect)
+        this.$refs.tree.$on('node:selected', this.onNodeSelect),
+        this.$refs.tree.$on('node:selectedPor', this.onNodeSelectPor)
     }
 }
 </script>

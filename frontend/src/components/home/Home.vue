@@ -5,12 +5,12 @@
         <div class="stats">
             <Stat title="Categorias" :value="stat.categories"
                 icon="fa fa-folder" color="#d54d50" />
-            <Stat title="Artigos" :value="stat.articles"
+            <Stat title="Ofertas" :value="stat.articles"
                 icon="fa fa-file" color="#3bc480" />
-            <Stat title="Usuários" :value="stat.users"
-                icon="fa fa-user" color="#3282cd" />
             <Stat title="Portfólios" :value="stat.portfolios"
                 icon="fa fa-folder-open" color="#edef58" />
+            <Stat title="Usuários" :value="stat.users"
+                icon="fa fa-user" color="#3282cd" />
         </div>
     </div>
 </template>

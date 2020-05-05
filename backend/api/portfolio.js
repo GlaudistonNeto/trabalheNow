@@ -53,8 +53,8 @@ module.exports = app => {
         const result = await app.db('portfolios').count('id').first()
         const count = parseInt(result.count)
 
-        app.db('portfolios')
-            .select('id', 'description')
+        app.db({ p: 'portfolios', u: 'users'})
+            .select('p.idid', 'p.description', {author: 'u.name'})
             .limit(limit).offset(page * limit - limit)
             .then(portfolios => res.json({ data: portfolios, count, limit }))
             .catch(err => res.status(500).send(err))
@@ -64,9 +64,9 @@ module.exports = app => {
         app.db('portfolios')
             .where({ id: req.params.id })
             .first()
-            .then(article => {
-                article.content = article.content.toString()
-                return res.json(article)
+            .then(portfolio => {
+                portfolio.content = portfolio.content.toString()
+                return res.json(portfolio)
             })
             .catch(err => res.status(500).send(err))
     }

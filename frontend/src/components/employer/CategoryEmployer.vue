@@ -1,5 +1,5 @@
 <template>
-    <div class="category-admin">
+    <div class="category-employer">
         <b-form>
             <input id="category-id" type="hidden" v-model="category.id" />
             <b-form-group label="Nome:" label-for="category-name">
@@ -42,7 +42,7 @@ import { baseApiUrl, showError } from '@/global'
 import axios from 'axios'
 
 export default {
-    name: 'CategoryAdmin',
+    name: 'CategoryEmployer',
     data: function() {
         return {
             mode: 'save',
